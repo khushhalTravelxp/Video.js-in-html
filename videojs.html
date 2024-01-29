@@ -15,6 +15,9 @@
 		height="564"
 		autoplay
 	  >
+	  <div id="">
+		
+	  </div>
 	  <script src="https://cdn.jsdelivr.net/npm/video.js@8.9.0/dist/video.min.js"></script>
 		<script src="./videojs-contrib-eme.js"></script>
 		<script>
@@ -30,30 +33,18 @@
 			player.src({
 			src: "https://travelxp.s.llnwi.net/watch1/6194d0164e2a9b451392cb3b/manifest_v1_hd_19052023_0908.mpd",
 			type: "application/dash+xml",
-			keySystems: {
+			keySystems :{
 				"com.widevine.alpha": {
+				audioContentType: 'audio/webm; codecs="vorbis"',
+				videoContentType: 'video/webM; codecs="vp9"',
 				url: "https://c8eaeae1-drm-widevine-licensing.axprod.net/AcquireLicense",
+				audioRobustness: 'SW_SECURE_CRYPTO',
+                  videoRobustness: 'SW_SECURE_CRYPTO',
 				licenseHeaders: {
-					"X-AxDRM-Message":
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDEtMzBUMDQ6MzE6MDMuMzQ2KzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiJjNDhiMGViMy1hNjIwLTBhZTUtZDQyYi1mMDEwYTk4NTYzNzYiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI4NDM1MzcxMi04MDU3LWY1OTItMDE3ZS04NmYyMmFlNTdiODAiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI5MDIyYmEwYy0xZmJlLTM0ZGItNGNiYy1lNmFhZTY5ZThiZjEiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.TdXNsz9U9_v2ANU5j0cb0u3x3m_zl3rse3KaqiyN298",
+					"X-AxDRM-Message": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDEtMzBUMTM6MTk6MDUuMzEwKzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiJjNDhiMGViMy1hNjIwLTBhZTUtZDQyYi1mMDEwYTk4NTYzNzYiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI4NDM1MzcxMi04MDU3LWY1OTItMDE3ZS04NmYyMmFlNTdiODAiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI5MDIyYmEwYy0xZmJlLTM0ZGItNGNiYy1lNmFhZTY5ZThiZjEiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.KXKdbC9fINHGHgFSraNmaGavCabSZCY-Ykbra_rN6K8"
 				},
-				priority: 0,
-				'org.w3.clearkey': {
-					audioContentType: 'audio/webm; codecs="vorbis"',
-					videoContentType: 'video/webm; codecs="vp9"',
-				},
-				supportedConfigurations: [{
-					videoCapabilities: [{
-					contentType: 'video/webm; codecs="vp9"',
-					robustness: 'SW_SECURE_CRYPTO'
-					}],
-					audioCapabilities: [{
-					contentType: 'audio/webm; codecs="vorbis"',
-					robustness: 'SW_SECURE_CRYPTO'
-					}]
-				}],
-				},
-			},
+				}
+			}
 			});
 		</script>
 	</body>
