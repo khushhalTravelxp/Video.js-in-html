@@ -4,8 +4,9 @@
 		<title>Video.js</title>
 		<link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
 		<script src="https://cdn.jsdelivr.net/npm/video.js@8.9.0/dist/video.min.js"></script>
-		<!-- <scrpt src="./dash.all.min.js"></scrpt> -->
 		<script src="./videojs-dash.min.js"></script>
+		<script src="./videojs-dash.min.js"></script>
+		<script src="./nuevo.min.js"></script>
 		
 	</head>
 	<body>
@@ -22,17 +23,29 @@
 	  <script>
 		videoEl = document.getElementById('video');
 		const player =videojs(videoEl);
+		let nuevoOptions = {
+        settingsButton: false,
+        pipButton: false,
+        contextMenu: false,
+        buttonForward: true,
+        androidLock: true,
+        title: "video title",
+        video_id: "video id",
+      };
 
 		player.on("error",(error)=>{
 			console.log(error)
 		})
+
+		player.nuevo(nuevoOptions);
+		console.log(player.nuevo)
 
 		videojs.log()
 
 		// player.eme();
 		
 		player.src({
-			src: "https://travelxp.s.llnwi.net/watch1/6194d0164e2a9b451392cb3b/manifest_v1_hd_19052023_0908.mpd",
+			src: "https://travelxp.s.llnwi.net/watch1/5ffe96a0d051dccc770fe216/manifest_v2_hd_05102021_1047.mpd",
 			type: "application/dash+xml",
 			keySystemOptions: [
 				{
@@ -40,14 +53,14 @@
 					options: {
 						serverURL: 'https://c8eaeae1-drm-widevine-licensing.axprod.net/AcquireLicense',
 						httpRequestHeaders: {
-						"X-AxDRM-Message": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDItMDJUMDY6MjA6NTcuNDYwKzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiJjNDhiMGViMy1hNjIwLTBhZTUtZDQyYi1mMDEwYTk4NTYzNzYiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI4NDM1MzcxMi04MDU3LWY1OTItMDE3ZS04NmYyMmFlNTdiODAiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI5MDIyYmEwYy0xZmJlLTM0ZGItNGNiYy1lNmFhZTY5ZThiZjEiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.sj2fOzxfLGj-E8EmfsOFYjv4qBrNwbn1Z4sqNgfJsJg"
+						"X-AxDRM-Message": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDItMjBUMDU6MTU6NDIuNjE0KzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiJjNjJhNzM1MC03N2U3LThlYzEtMzI1Yy0yNjU1MmIyMWU4NTkiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiIxM2U0OTRkNC04OGE0LWExMDQtMGYwZC1kOTBjMmQ1OWE0ZDAiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiJkNWI0YzBiZi1mYWViLTIyMGQtYmFlMi04MDA4MzllYzg4ODEiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI1ODZjOTQyMi03MzAzLTJlNjgtMWRlZi05NmVlNzNjYzVhNzkiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.1ciyxTbdOKJ807ivWyimG5SPz885VSEaQlCBKOLASOo"
 					},
 					}
 				}
 			]
 		});
 		player.play();
-	</script>	
+	</script>
 	</body>
 </html>
 
