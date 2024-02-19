@@ -1,86 +1,38 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Video.js</title>
-		<link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
-		<script src="https://cdn.jsdelivr.net/npm/video.js@8.9.0/dist/video.min.js"></script>
-		<script src="./videojs-dash.min.js"></script>
-		<script src="./videojs-dash.min.js"></script>
-		<script src="./nuevo.min.js"></script>
-		
-	</head>
-	<body>
-		<h1>Video Js In Html</h1>
-		<video
-		id="video"
-		class="video-js"
-		controls
-		preload="auto"
-		width="840"
-		height="564"
-		autoplay
-	  >
-	  <script>
-		videoEl = document.getElementById('video');
-		const player =videojs(videoEl);
-		let nuevoOptions = {
-        settingsButton: false,
-        pipButton: false,
-        contextMenu: false,
-        buttonForward: true,
-        androidLock: true,
-        title: "video title",
-        video_id: "video id",
-      };
+<head>
+    <title>Video.js Player with Axinom DRM</title>
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+</head>
 
-		player.on("error",(error)=>{
-			console.log(error)
-		})
+<body>
+    <video id="myplayer" class="video-js" controls preload="auto" width="640" height="264">
+        <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+        <script src="./nuevo.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.11.1/dist/videojs-contrib-eme.min.js"></script>
+        <script>
+            var nuevo_options = {relatedMenu: false}
+            var player = videojs("myplayer",{plugins:{"nuevo": nuevo_options}});
 
-		player.nuevo(nuevoOptions);
-		console.log(player.nuevo)
+            player.eme()
+            
+            player.src({
+                src: 'https://travelxp.s.llnwi.net/watch1/626295a1b7013c95fdcc89b9/manifest_v1_hd_13052022_0458.m3u8',
+                type: 'application/x-mpegURL',
+                keySystems: {
+                    'com.apple.fps.1_0': {
+                        certificateUri: 'https://d16ibmw8keylbh.cloudfront.net/fpcert/fairplay.cer',
+                        getContentId: function (emeOptions, initData) {
+                            return new TextDecoder().decode(initData.filter(item => item !== 0 && item !== 150))
+                        },
+                        licenseUri: 'https://c8eaeae1-drm-fairplay-licensing.axprod.net/AcquireLicense',
+                        licenseHeaders: {
+                            'X-AxDrm-Message': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDItMjBUMDU6NDI6MjIuMTI5KzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiI5ZDM1NWFmNi1iMjdiLTEwYzItYjUzOC0xMDc2MjllZWZlOWMiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI3YjIyYTZjOS0wOWNmLTU3ZDQtN2Q0Yy1lYmU5YWM0ZjYyNjYiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI1Mzc2NTRkNi1iN2Q4LWUwMDgtYTg2Ni1mYjM0NTQ3MzI5MGQiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiJjMjM4YzE2YS1iNzcyLTRlMTgtMGEwZS02MTVmZDYzZjc1YzQiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.AA-1GmKXE_NgxHQi1gd0alTHIo53eCNm-VXoUVrVu-k'
+                        }
+                    }
+                }
+            })
+        </script>
+</body>
 
-		videojs.log()
-
-		// player.eme();
-		
-		player.src({
-			src: "https://travelxp.s.llnwi.net/watch1/5ffe96a0d051dccc770fe216/manifest_v2_hd_05102021_1047.mpd",
-			type: "application/dash+xml",
-			keySystemOptions: [
-				{
-					name: 'com.widevine.alpha',
-					options: {
-						serverURL: 'https://c8eaeae1-drm-widevine-licensing.axprod.net/AcquireLicense',
-						httpRequestHeaders: {
-						"X-AxDRM-Message": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDItMjBUMDU6MTU6NDIuNjE0KzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiJjNjJhNzM1MC03N2U3LThlYzEtMzI1Yy0yNjU1MmIyMWU4NTkiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiIxM2U0OTRkNC04OGE0LWExMDQtMGYwZC1kOTBjMmQ1OWE0ZDAiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiJkNWI0YzBiZi1mYWViLTIyMGQtYmFlMi04MDA4MzllYzg4ODEiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI1ODZjOTQyMi03MzAzLTJlNjgtMWRlZi05NmVlNzNjYzVhNzkiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.1ciyxTbdOKJ807ivWyimG5SPz885VSEaQlCBKOLASOo"
-					},
-					}
-				}
-			]
-		});
-		player.play();
-	</script>
-	</body>
 </html>
-
-
-
-
-
-
-
-<!-- // keySystemOptions :{
-	// 		"com.widevine.alpha": {
-	// 		options:{
-	// 			serverURL: "https://c8eaeae1-drm-widevine-licensing.axprod.net/AcquireLicense",
-	// 		},
-	// 		licenseHeaders: {
-	// 			"X-AxDRM-Message":
-	// 			"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDItMDJUMDQ6MzA6NTQuODc4KzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiI2YjBlMDQ1NS0xMWIzLWU5MGUtNTA4OS1lYjM1MDA4YmZhYjciLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiJiMTI3NmQ3MS04NzgzLWU3YTYtMTRjYy05NzA4MDVmN2Y1YWYiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI5N2ZlNTM1My1kZWIzLTI4OWEtZDk5YS1hNDVkMTgyYjc2NzIiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiIzYTg0MmU0Ni03YzIyLTQ4ZTQtNDRlMy05MWJiYmYzZjA1NDkiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.tEJHaf-Rddr02agR4VlLc1ZUgQrTdI5ZDzp2el6b9C4",
-	// 		},
-	// 		priority: 0,
-			
-	// 		},
-	// 	}, -->
-
