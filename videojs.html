@@ -4,6 +4,9 @@
 		<title>Video.js</title>
 		<link href="https://vjs.zencdn.net/8.9.0/video-js.css" rel="stylesheet" />
 		<script src="https://cdn.jsdelivr.net/npm/video.js@8.9.0/dist/video.min.js"></script>
+		<!-- <scrpt src="./dash.all.min.js"></scrpt> -->
+		<script src="./videojs-dash.min.js"></script>
+		
 	</head>
 	<body>
 		<h1>Video Js In Html</h1>
@@ -18,19 +21,53 @@
 	  >
 	  <script>
 		videoEl = document.getElementById('video');
-			player =videojs(videoEl);
+		const player =videojs(videoEl);
 
 		player.on("error",(error)=>{
 			console.log(error)
 		})
 
-		// player.eme();
+		videojs.log()
 
+		// player.eme();
+		
 		player.src({
-		src: "https://travelxp.s.llnwi.net/watch1/5f168c368281ec7f46d0f35a/manifest_v2.mpd",
-		type: "application/dash+xml",
+			src: "https://travelxp.s.llnwi.net/watch1/6194d0164e2a9b451392cb3b/manifest_v1_hd_19052023_0908.mpd",
+			type: "application/dash+xml",
+			keySystemOptions: [
+				{
+					name: 'com.widevine.alpha',
+					options: {
+						serverURL: 'https://c8eaeae1-drm-widevine-licensing.axprod.net/AcquireLicense',
+						httpRequestHeaders: {
+						"X-AxDRM-Message": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDItMDJUMDY6MjA6NTcuNDYwKzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiJjNDhiMGViMy1hNjIwLTBhZTUtZDQyYi1mMDEwYTk4NTYzNzYiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI4NDM1MzcxMi04MDU3LWY1OTItMDE3ZS04NmYyMmFlNTdiODAiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI5MDIyYmEwYy0xZmJlLTM0ZGItNGNiYy1lNmFhZTY5ZThiZjEiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.sj2fOzxfLGj-E8EmfsOFYjv4qBrNwbn1Z4sqNgfJsJg"
+					},
+					}
+				}
+			]
 		});
+		player.play();
 	</script>	
 	</body>
 </html>
+
+
+
+
+
+
+
+<!-- // keySystemOptions :{
+	// 		"com.widevine.alpha": {
+	// 		options:{
+	// 			serverURL: "https://c8eaeae1-drm-widevine-licensing.axprod.net/AcquireLicense",
+	// 		},
+	// 		licenseHeaders: {
+	// 			"X-AxDRM-Message":
+	// 			"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJjb21fa2V5X2lkIjoiYjQ1ODc2N2QtYTgzYi00MWQ0LWFlNjgtYWNhNzAwZDNkODRmIiwibWVzc2FnZSI6eyJ0eXBlIjoiZW50aXRsZW1lbnRfbWVzc2FnZSIsInZlcnNpb24iOjIsImxpY2Vuc2UiOnsiZXhwaXJhdGlvbl9kYXRldGltZSI6IjIwMjQtMDItMDJUMDQ6MzA6NTQuODc4KzAwOjAwIiwiYWxsb3dfcGVyc2lzdGVuY2UiOnRydWUsInJlYWxfdGltZV9leHBpcmF0aW9uIjp0cnVlfSwiY29udGVudF9rZXlfdXNhZ2VfcG9saWNpZXMiOlt7Im5hbWUiOiJQb2xpY3kgQSIsIndpZGV2aW5lIjp7ImRldmljZV9zZWN1cml0eV9sZXZlbCI6IlNXX1NFQ1VSRV9DUllQVE8ifX1dLCJjb250ZW50X2tleXNfc291cmNlIjp7ImlubGluZSI6W3siaWQiOiI2YjBlMDQ1NS0xMWIzLWU5MGUtNTA4OS1lYjM1MDA4YmZhYjciLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiJiMTI3NmQ3MS04NzgzLWU3YTYtMTRjYy05NzA4MDVmN2Y1YWYiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiI5N2ZlNTM1My1kZWIzLTI4OWEtZDk5YS1hNDVkMTgyYjc2NzIiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9LHsiaWQiOiIzYTg0MmU0Ni03YzIyLTQ4ZTQtNDRlMy05MWJiYmYzZjA1NDkiLCJ1c2FnZV9wb2xpY3kiOiJQb2xpY3kgQSJ9XX19fQ.tEJHaf-Rddr02agR4VlLc1ZUgQrTdI5ZDzp2el6b9C4",
+	// 		},
+	// 		priority: 0,
+			
+	// 		},
+	// 	}, -->
 
